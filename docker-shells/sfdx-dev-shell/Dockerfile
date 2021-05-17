@@ -73,6 +73,6 @@ COPY --from=nodejs-builder /usr/local /usr/local
 COPY --from=sfdx-dev-shell-builder-python $APP_USER_HOME $APP_USER_HOME
 
 ENTRYPOINT ["/usr/bin/zsh"]
-
+CMD [ "zsh && source ~/.zshrc" ]
 
 
