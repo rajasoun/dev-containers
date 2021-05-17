@@ -1,4 +1,4 @@
-# Note: You can use any Debian/Ubuntu based image you want. 
+# Note: You can use any Debian/Ubuntu based image you want.
 FROM mcr.microsoft.com/vscode/devcontainers/base:0-buster AS base-builder
 
 # [Option] Install zsh
@@ -25,8 +25,8 @@ RUN apt-get update \
 
 FROM base-builder
 
-# Setting the ENTRYPOINT to docker-init.sh will configure non-root access to 
-# the Docker socket if "overrideCommand": false is set in devcontainer.json. 
+# Setting the ENTRYPOINT to docker-init.sh will configure non-root access to
+# the Docker socket if "overrideCommand": false is set in devcontainer.json.
 # The script will also execute CMD if you need to alter startup behaviors.
 ENTRYPOINT [ "/usr/local/share/docker-init.sh" ]
 CMD [ "sleep", "infinity" ]
@@ -38,7 +38,7 @@ RUN set -ex \
 
 # # pip3 packages
 RUN set -ex \
-    && pip3 --disable-pip-version-check --no-cache-dir install pipenv ggshield pre-commit 
+    && pip3 --disable-pip-version-check --no-cache-dir install pipenv ggshield pre-commit
 
 # To handle dependencies
 RUN set -ex \
