@@ -1,0 +1,17 @@
+{
+  "template": "https://github.com/rajasoun/cookiecutter-docker-shell",
+  "commit": "12c4e1eba1de7621993e5acf0d00270b8720eb8b",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "bats-with-helpers",
+      "project_slug": "bats-with-helpers",
+      "project_description": "Container environment for bash script TDD ",
+      "docker_shell": "bats-with-helpers",
+      "security_mailer": "devsecops@icloud.com",
+      "author_full_name": "Raja. S",
+      "_template": "https://github.com/rajasoun/cookiecutter-docker-shell"
+    }
+  },
+  "directory": null
+}
