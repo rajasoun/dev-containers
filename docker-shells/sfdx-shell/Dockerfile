@@ -15,7 +15,13 @@ RUN apk --update add --no-cache --virtual \
 ## Install Python Packages
 RUN set -ex \
     && pip3 --disable-pip-version-check --no-cache-dir install \
-        awscli secretcli pipenv pre-commit ggshield \
+        awscli secretcli pipenv pre-commit ggshield pipx\
+        --no-warn-script-location \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+## Install Python Packages
+RUN set -ex \
+    && pip3 --disable-pip-version-check --no-cache-dir install \
         cruft commitizen cumulusci\
         --no-warn-script-location \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
