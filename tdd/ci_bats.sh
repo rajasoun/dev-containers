@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 
-DOCKER_CMD="exec docker run -it -v "${PWD}:/code" rajasoun/bats-with-helpers:latest"
+ROOT_DIR="$(git rev-parse --show-toplevel)/tdd/bats"
+TDD_BATS_DIR="/code"
+DOCKER_CMD="exec docker run -it -v "${ROOT_DIR}:/code" rajasoun/bats-with-helpers:latest"
+
 function run_unit_tests(){
-  $DOCKER_CMD /code/test/unit -t  || return 1
+  $DOCKER_CMD ${TDD_BATS_DIR}/test/unit -t  || return 1
 }
 
 function run_integration_tests(){
-  $DOCKER_CMD /code/test/integration -t  /code/test/integration -t  || return 1
+  $DOCKER_CMD ${TDD_BATS_DIR}/test/integration -t  /code/test/integration -t  || return 1
 }
 
 function run_all_tests(){
-  $DOCKER_CMD /code/test/unit -t  || return 1
-  $DOCKER_CMD /code/test/integration -t  || return 1
+  $DOCKER_CMD ${TDD_BATS_DIR}/test/unit -t  || return 1
+  $DOCKER_CMD ${TDD_BATS_DIR}/test/integration -t  || return 1
 }
 
 function print_line(){

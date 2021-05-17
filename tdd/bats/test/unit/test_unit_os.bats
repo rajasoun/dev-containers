@@ -144,6 +144,12 @@ teardown() {
   assert_output --partial "-r"
 }
 
+@test ".unit.os.run_pre_commit Intgeration Test pre-commit" {
+  run _is_command_found pre-commit
+  assert_success
+  run run_pre_commit
+  assert_output --partial "-r"
+}
 
 
 
