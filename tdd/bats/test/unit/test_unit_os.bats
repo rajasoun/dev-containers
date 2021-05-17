@@ -143,10 +143,3 @@ teardown() {
   run lls
   assert_output --partial "-r"
 }
-
-
-
-
-
-
-

@@ -2,7 +2,8 @@
 
 ROOT_DIR="$(git rev-parse --show-toplevel)/tdd/bats"
 TDD_BATS_DIR="/code"
-DOCKER_CMD="exec docker run -it -v "${ROOT_DIR}:/code" rajasoun/bats-with-helpers:latest"
+
+DOCKER_CMD="exec docker run --rm -it --name  bats-tdd-container -v ${ROOT_DIR}:/code rajasoun/bats-with-helpers:latest"
 
 function run_unit_tests(){
   $DOCKER_CMD ${TDD_BATS_DIR}/test/unit -t  || return 1

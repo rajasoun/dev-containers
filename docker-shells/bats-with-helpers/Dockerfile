@@ -12,4 +12,3 @@ RUN git clone https://github.com/lox/bats-mock          /bats-test-helpers/lox-b
 FROM bats-base-builder
 COPY --from=bats-helpers /bats-test-helpers /opt/bats-test-helpers
 WORKDIR /code/
-

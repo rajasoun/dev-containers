@@ -6,4 +6,3 @@ assert_empty(){
 refute_empty(){
   assert [ ! -z "${1}" ]
 }
-
