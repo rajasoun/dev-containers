@@ -1,7 +1,0 @@
-diff a/.gitignore b/.gitignore	(rejected hunks)
-@@ -325,4 +325,4 @@ $RECYCLE.BIN/
- .cache_ggshield
- .vscode
- bash-it
--
-+make
