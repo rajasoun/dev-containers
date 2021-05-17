@@ -40,14 +40,6 @@ FROM sfdx-dev-shell-builder as sfdx-dev-shell-builder-python
 LABEL Vendor="Alpine"
 LABEL distro="alpine" distro_version="3.13.0" architecture="x86_64"
 
-# install oh-my-zsh
-RUN wget -qO- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | zsh || true
-ARG ZSH_CUSTOM=$APP_USER_HOME/.oh-my-zsh/custom
-
-## Copy dotfiles
-COPY --chown=$APP_USER:$APP_USER_GROUP dotfiles/.zshrc $APP_USER_HOME/.zshrc
-COPY --chown=$APP_USER:$APP_USER_GROUP dotfiles/.zprofile $APP_USER_HOME/.zprofile
-COPY --chown=$APP_USER:$APP_USER_GROUP dotfiles/.alias.sh $APP_USER_HOME/.alias.sh
 # pipx packages
 RUN set -ex \
     && python3 -m pip install --user pipx \
@@ -64,7 +56,8 @@ FROM sfdx-dev-shell-builder
 ## System
 ENV TIMEZONE="Etc/UTC" \
     TERM="xterm" \
-    HOSTNAME="sfdx-dev-shell"
+    HOSTNAME="sfdx-dev-shell" \
+    ZSH_THEME="robbyrussell"
 
 ENV UMASK="0022"
 
@@ -72,7 +65,15 @@ ENV UMASK="0022"
 COPY --from=nodejs-builder /usr/local /usr/local
 COPY --from=sfdx-dev-shell-builder-python $APP_USER_HOME $APP_USER_HOME
 
-ENTRYPOINT ["/usr/bin/zsh"]
-CMD [ "zsh && source ~/.zshrc" ]
+# install oh-my-zsh
+ARG ZSH_CUSTOM=$APP_USER_HOME/.oh-my-zsh/custom
+RUN wget -qO- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | zsh || true
+## Copy dotfiles
+COPY --chown=$APP_USER:$APP_USER_GROUP dotfiles/.zshrc $APP_USER_HOME/.zshrc
+COPY --chown=$APP_USER:$APP_USER_GROUP dotfiles/.zprofile $APP_USER_HOME/.zprofile
+COPY --chown=$APP_USER:$APP_USER_GROUP dotfiles/.alias.sh $APP_USER_HOME/.alias.sh
+
+CMD ["source /home/vscode/.zshrc","/usr/bin/zsh"]
+
 
 

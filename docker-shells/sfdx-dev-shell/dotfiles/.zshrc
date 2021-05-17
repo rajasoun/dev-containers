@@ -1,4 +1,5 @@
 source ~/.alias.sh
+source ~/.zprofile
 
 ###################################################################
 # Either Prezto or oh-my-zsh can be used
